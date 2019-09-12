@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar color = "banner">
+    <ion-title color = "light">
+      Stock Watcher
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class ="bg-image">
+  
+<h1><strong> Welcome to Stockwatcher</strong> </h1>
+
+
+
+<p> The app that provides you with live data from four different providers! </p>
+<p></p>
+
+
+
+	
+   <div class = "container">  
+  <button style="background-color: #ffd194;" ion-button color ="dark" round  clear outline  (click)="goToNasdaqPage()">NASDAQ Quotes</button>
+  
+  	</div>
+
+  <button style="background-color: #ffd194; " ion-button color ="dark" round outline clear (click)="goToSP500Page()">S&amp;P 500 Quotes</button>
+
+  <button style="background-color: #ffd194; "ion-button color ="dark" round outline clear (click)="goToDowJonesPage()">Dow Jones Quotes</button>
+
+  <button style="background-color: #ffd194;"ion-button color  ="dark" round outline clear (click)="goToNYSEPage()">NYSE Quotes</button>
+
+ 
+</ion-content>
+
+
+

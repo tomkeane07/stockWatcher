@@ -1,0 +1,43 @@
+page-home {
+//* Here we will create our styling classes to import into our home.html *//
+
+.bg-color{
+
+
+
+}
+.h1 {
+	margin:20px;
+	font-family: ' Open Sans';
+	font-style: bold;
+	color: gold;
+	font-weight: bolder;
+
+
+}
+
+.p {
+	margin:20px;
+}
+.bg-image { 
+  /* The image used */
+  background-image: url("../assets/imgs/background.jpeg");
+
+  /* Full height */
+
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center-top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.button{
+	background-color: white;
+	outline-color: white;
+
+
+
+
+}
+}

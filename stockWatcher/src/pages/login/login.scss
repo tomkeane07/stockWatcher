@@ -1,0 +1,25 @@
+page-login {
+
+
+.bg-image { 
+  /* The image used */
+  background-image: url("../assets/imgs/loginpage.jpg");
+
+  /* Full height */
+
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center-top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.item-style {
+	background-color: transparent;
+}
+
+.navbar {
+	background-image: url("../assets/imgs/navbanner.jpg");
+}
+}

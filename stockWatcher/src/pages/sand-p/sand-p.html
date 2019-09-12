@@ -1,0 +1,78 @@
+<!--
+  Generated template for the SandPPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>S&amp;P 500</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class = "bg-image">
+
+    <button ion-button color="dark" round full (click)="goToHomePage()">Home Page</button>
+
+    <h6><strong>{{SPstockData?.AAPL?.quote?.companyName}}</strong></h6>
+    <p>Latest Price: ${{SPstockData?.AAPL?.quote?.latestPrice | number:'1.2-2'}}</p>
+    <p>Change: ${{SPstockData?.AAPL?.quote?.change | number:'1.2-2'}}</p>
+    <p>Previous Close: ${{SPstockData?.AAPL?.quote?.previousClose | number:'1.2-2'}}</p>
+    <p>Volume Traded: {{SPstockData?.AAPL?.quote?.avgTotalVolume}}</p>
+
+    <h6><strong>{{SPstockData?.AMZN?.quote?.companyName}}</strong></h6>
+    <p>Latest Price: ${{SPstockData?.AMZN?.quote?.latestPrice | number:'1.2-2'}}</p>
+    <p>Change: ${{SPstockData?.AMZN?.quote?.change | number:'1.2-2'}}</p>
+    <p>Previous Close: ${{SPstockData?.AMZN?.quote?.previousClose | number:'1.2-2'}}</p>
+    <p>Volume Traded: {{SPstockData?.AMZN?.quote?.avgTotalVolume}}</p>
+
+    <h6><strong>{{SPstockData?.BAC?.quote?.companyName}}</strong></h6>
+    <p>Latest Price: ${{SPstockData?.BAC?.quote?.latestPrice | number:'1.2-2'}}</p>
+    <p>Change: ${{SPstockData?.BAC?.quote?.change | number:'1.2-2'}}</p>
+    <p>Previous Close: ${{SPstockData?.BAC?.quote?.previousClose | number:'1.2-2'}}</p>
+    <p>Volume Traded: {{SPstockData?.BAC?.quote?.avgTotalVolume}}</p>
+
+    <h6><strong>{{SPstockData?.CVX?.quote?.companyName}}</strong></h6>
+    <p>Latest Price: ${{SPstockData?.CVX?.quote?.latestPrice | number:'1.2-2'}}</p>
+    <p>Change: ${{SPstockData?.CVX?.quote?.change | number:'1.2-2'}}</p>
+    <p>Previous Close: ${{SPstockData?.CVX?.quote?.previousClose | number:'1.2-2'}}</p>
+    <p>Volume Traded: {{SPstockData?.CVX?.quote?.avgTotalVolume}}</p>
+
+    <h6><strong>{{SPstockData?.FB?.quote?.companyName}}</strong></h6>
+    <p>Latest Price: ${{SPstockData?.FB?.quote?.latestPrice | number:'1.2-2'}}</p>
+    <p>Change: ${{SPstockData?.FB?.quote?.change | number:'1.2-2'}}</p>
+    <p>Previous Close: ${{SPstockData?.FB?.quote?.previousClose | number:'1.2-2'}}</p>
+    <p>Volume Traded: {{SPstockData?.FB?.quote?.avgTotalVolume}}</p>
+
+
+    <h6><strong>{{SPstockData?.GOOGL?.quote?.companyName}}</strong></h6>
+    <p>Latest Price: ${{SPstockData?.GOOGL?.quote?.latestPrice | number:'1.2-2'}}</p>
+    <p>Change: ${{SPstockData?.GOOGL?.quote?.change | number:'1.2-2'}}</p>
+    <p>Previous Close: ${{SPstockData?.GOOGL?.quote?.previousClose | number:'1.2-2'}}</p>
+    <p>Volume Traded: {{SPstockData?.GOOGL?.quote?.avgTotalVolume}}</p>
+
+
+    <h6><strong>{{SPstockData?.INTC?.quote?.companyName}}</strong></h6>
+    <p>Latest Price: ${{SPstockData?.INTC?.quote?.latestPrice | number:'1.2-2'}}</p>
+    <p>Change: ${{SPstockData?.INTC?.quote?.change | number:'1.2-2'}}</p>
+    <p>Previous Close: ${{SPstockData?.INTC?.quote?.previousClose | number:'1.2-2'}}</p>
+    <p>Volume Traded: {{SPstockData?.INTC?.quote?.avgTotalVolume}}</p>
+
+
+    <h6><strong>{{SPstockData?.JNJ?.quote?.companyName}}</strong></h6>
+    <p>Latest Price: ${{SPstockData?.JNJ?.quote?.latestPrice | number:'1.2-2'}}</p>
+    <p>Change: ${{SPstockData?.JNJ?.quote?.change | number:'1.2-2'}}</p>
+    <p>Previous Close: ${{SPstockData?.JNJ?.quote?.previousClose | number:'1.2-2'}}</p>
+    <p>Volume Traded: {{SPstockData?.JNJ?.quote?.avgTotalVolume}}</p>
+
+
+    <h6><strong>{{SPstockData?.JPM?.quote?.companyName}}</strong></h6>
+    <p>Latest Price: ${{SPstockData?.JPM?.quote?.latestPrice | number:'1.2-2'}}</p>
+    <p>Change: ${{SPstockData?.JPM?.quote?.change | number:'1.2-2'}}</p>
+    <p>Previous Close: ${{SPstockData?.JPM?.quote?.previousClose | number:'1.2-2'}}</p>
+    <p>Volume Traded: {{SPstockData?.JPM?.quote?.avgTotalVolume}}</p>
+
+</ion-content>

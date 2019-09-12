@@ -1,0 +1,34 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style class = 'bg-image'>
+	<ion-item style class = 'item-style'>
+		<ion-label>Email Address</ion-label>  <!-- text box for email entry -->
+		<ion-input type = "text" [(ngModel)] = "user.email"></ion-input>  
+	</ion-item>
+	     
+	 <ion-item style class =  'item-style'> 
+	<ion-label>Password</ion-label>    <!-- text box for 
+	email entry -->
+		<ion-input type = "text" [(ngModel)]  = "user.password"></ion-input> 
+	</ion-item>
+
+	<button ion-button style = "background-color: #ffd194; "ion-button color dark (click) ="register(user)" >Register</button> 
+
+	<button ion-button style ="background-color:  #ffd194;" ion-button color dark round full (click)="goToLoginPage()">Back to Login Page</button>
+
+</ion-content>
+
+<button style="background-image: url("../assets/imgs/register.jpg"); ion-button color ="dark" round outline clear (click)
