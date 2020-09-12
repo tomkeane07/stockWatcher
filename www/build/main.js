@@ -1,6 +1,54 @@
 webpackJsonp([6],{
 
-/***/ 115:
+/***/ 101:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var stockListPageUtilities = /** @class */ (function () {
+    function stockListPageUtilities() {
+    }
+    stockListPageUtilities.parseStockData = function (allStockData) {
+        var numberOfStockSources = Object.keys(allStockData).length;
+        var htmlString = "";
+        for (var i = 0; i < numberOfStockSources; i++) {
+            htmlString += this.generateHtmlStockSection(allStockData, i);
+        }
+        return htmlString;
+    };
+    stockListPageUtilities.generateHtmlStockSection = function (allStockData, i) {
+        var stocks = this.getStocks(allStockData, i);
+        var companyName = this.grabCompanyStockValue(stocks, "companyName");
+        var latestPrice = this.grabCompanyStockValue(stocks, "latestPrice");
+        var change = this.grabCompanyStockValue(stocks, "change");
+        var previousClose = this.grabCompanyStockValue(stocks, "previousClose");
+        var volumeTraded = this.grabCompanyStockValue(stocks, "volume");
+        return "<h6><strong>" + companyName + "</strong></h6>" +
+            "<p>Latest Price: " + latestPrice + "</p>" +
+            "<p>Change: " + change + "</p>" +
+            "<p>Previous Close: " + previousClose + "</p>" +
+            "<p>Volume Traded: " + volumeTraded + "</p>";
+    };
+    stockListPageUtilities.getStocks = function (stockData, index) {
+        var arrayedQuoteObjects = Object.values(stockData);
+        var companyQuoteValues = this.grabCompanyQuoteObject(arrayedQuoteObjects, index);
+        return [Object.keys(companyQuoteValues), Object.values(companyQuoteValues)];
+    };
+    stockListPageUtilities.grabCompanyQuoteObject = function (arrayedQuoteObjects, companyInt) {
+        return arrayedQuoteObjects[companyInt]["quote"];
+    };
+    stockListPageUtilities.grabCompanyStockValue = function (stocks, param) {
+        var stockIndex = stocks[0].indexOf(param);
+        var stockValue = stocks[1][stockIndex];
+        return stockValue == null ? "" : stockValue;
+    };
+    return stockListPageUtilities;
+}());
+/* harmony default export */ __webpack_exports__["a"] = (stockListPageUtilities);
+//# sourceMappingURL=stockListPageUtilities.js.map
+
+/***/ }),
+
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -127,7 +175,7 @@ var AuthenticationService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 120:
+/***/ 121:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -135,8 +183,8 @@ var AuthenticationService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home_home__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_authentication_service__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_register_register__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_authentication_service__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_register_register__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -200,7 +248,7 @@ var LoginPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 121:
+/***/ 122:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -209,7 +257,7 @@ var LoginPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(121);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -309,7 +357,7 @@ var RegisterPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 198:
+/***/ 199:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -317,8 +365,17 @@ var RegisterPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_rest_rest__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stockListPageUtilities__ = __webpack_require__(622);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stockListBase__ = __webpack_require__(498);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -328,7 +385,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -339,30 +395,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var NasdaqPage = /** @class */ (function () {
+var NasdaqPage = /** @class */ (function (_super) {
+    __extends(NasdaqPage, _super);
     function NasdaqPage(navCtrl, navParams, restProvider) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.restProvider = restProvider;
-        this.getNASDAQDataObjectsFromPromise();
+        var _this = _super.call(this, navCtrl, navParams, restProvider) || this;
+        _this.navCtrl = navCtrl;
+        _this.navParams = navParams;
+        _this.restProvider = restProvider;
+        _this.getNASDAQDataObjectsFromPromise();
+        return _this;
     }
     NasdaqPage.prototype.getNASDAQDataObjectsFromPromise = function () {
         var _this = this;
         this.restProvider.getNASDAQDataFromAPIViaPromise().then(function (data) {
-            console.log("Trying to access NASDAQ results from the Promise return");
-            _this.NASDAQstockData = data;
-            console.log("Got NASDAQ results from the Promise");
+            _this.stockData = data;
             _this.bindDataToHTML(data);
         });
-    };
-    NasdaqPage.prototype.bindDataToHTML = function (stockData) {
-        this.htmlStockData += __WEBPACK_IMPORTED_MODULE_4__stockListPageUtilities__["a" /* default */].parseStockData(stockData);
-    };
-    NasdaqPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad NasdaqPage');
-    };
-    NasdaqPage.prototype.goToHomePage = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]); // by using setroot we get rid of the back button when we go back to the home page
     };
     NasdaqPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
@@ -372,22 +420,31 @@ var NasdaqPage = /** @class */ (function () {
     ], NasdaqPage);
     return NasdaqPage;
     var _a, _b, _c;
-}());
+}(__WEBPACK_IMPORTED_MODULE_3__stockListBase__["a" /* default */]));
 
 //# sourceMappingURL=nasdaq.js.map
 
 /***/ }),
 
-/***/ 199:
+/***/ 200:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SandPPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stockListPageUtilities__ = __webpack_require__(622);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stockListBase__ = __webpack_require__(498);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -397,7 +454,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -408,105 +464,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var SandPPage = /** @class */ (function () {
-    function SandPPage(navCtrl, restProvider, navParams) {
-        this.navCtrl = navCtrl;
-        this.restProvider = restProvider;
-        this.navParams = navParams;
-        this.getSP500DataObjectsFromPromise();
+var SandPPage = /** @class */ (function (_super) {
+    __extends(SandPPage, _super);
+    function SandPPage(navCtrl, navParams, restProvider) {
+        var _this = _super.call(this, navCtrl, navParams, restProvider) || this;
+        _this.navCtrl = navCtrl;
+        _this.navParams = navParams;
+        _this.restProvider = restProvider;
+        _this.getSP500DataObjectsFromPromise();
+        return _this;
     }
     SandPPage.prototype.getSP500DataObjectsFromPromise = function () {
         var _this = this;
         this.restProvider.getSP500DataFromAPIViaPromise().then(function (data) {
-            console.log("Trying to access S&P500 results from the Promise return");
-            _this.SPstockData = data;
-            console.log("Got results from the S&P500 Promise");
+            _this.stockData = data;
             _this.bindDataToHTML(data);
         });
-    };
-    SandPPage.prototype.bindDataToHTML = function (stockData) {
-        this.htmlStockData += __WEBPACK_IMPORTED_MODULE_4__stockListPageUtilities__["a" /* default */].parseStockData(stockData);
-    };
-    SandPPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SandPPage');
-    };
-    SandPPage.prototype.goToHomePage = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]); // // by using setroot we get rid of the back button when we go back to the home page
     };
     SandPPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-sand-p',template:/*ion-inline-start:"C:\Users\admin\stockWatcher-master\stockWatcher\src\pages\stockListPages\sand-p\sand-p.html"*/'<!--\n\n  Generated template for the SandPPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>S&amp;P 500</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class = "bg-image">\n\n\n\n    <button ion-button color="dark" round full (click)="goToHomePage()">Home Page</button>\n\n    <div [innerHTML]="htmlStockData"></div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\admin\stockWatcher-master\stockWatcher\src\pages\stockListPages\sand-p\sand-p.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]) === "function" && _c || Object])
     ], SandPPage);
     return SandPPage;
     var _a, _b, _c;
-}());
+}(__WEBPACK_IMPORTED_MODULE_3__stockListBase__["a" /* default */]));
 
 //# sourceMappingURL=sand-p.js.map
-
-/***/ }),
-
-/***/ 200:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DowJonesPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stockListPageUtilities__ = __webpack_require__(622);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var DowJonesPage = /** @class */ (function () {
-    function DowJonesPage(navCtrl, navParams, restProvider) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.restProvider = restProvider;
-        this.getDowJonesDataObjectsFromPromise();
-    }
-    DowJonesPage.prototype.getDowJonesDataObjectsFromPromise = function () {
-        var _this = this;
-        this.restProvider.getDowJonesDataFromAPIViaPromise().then(function (data) {
-            console.log("Trying to access DowJones results from the Promise return");
-            _this.stockDataDowJones = data;
-            console.log("Got DowJones results from the Promise");
-            _this.bindDataToHTML(data);
-        });
-    };
-    DowJonesPage.prototype.bindDataToHTML = function (stockData) {
-        this.htmlStockData += __WEBPACK_IMPORTED_MODULE_4__stockListPageUtilities__["a" /* default */].parseStockData(stockData);
-    };
-    DowJonesPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad DowJonesPage');
-    };
-    DowJonesPage.prototype.goToHomePage = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]); // by using set root we get rid of the back button when we go back to the home page
-    };
-    DowJonesPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-dow-jones',template:/*ion-inline-start:"C:\Users\admin\stockWatcher-master\stockWatcher\src\pages\stockListPages\dow-jones\dow-jones.html"*/'<!--\n\n  Generated template for the DowJonesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Dow Jones Industrial Average</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="bg-image">\n\n\n\n\n\n  <button ion-button color="dark" round full (click)="goToHomePage()">Home Page</button>\n\n  <div [innerHTML]="htmlStockData"></div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\admin\stockWatcher-master\stockWatcher\src\pages\stockListPages\dow-jones\dow-jones.html"*/,
-        }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */]) === "function" && _c || Object])
-    ], DowJonesPage);
-    return DowJonesPage;
-    var _a, _b, _c;
-}());
-
-//# sourceMappingURL=dow-jones.js.map
 
 /***/ }),
 
@@ -514,12 +499,21 @@ var DowJonesPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NysePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DowJonesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stockListPageUtilities__ = __webpack_require__(622);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stockListBase__ = __webpack_require__(498);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -530,6 +524,68 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+var DowJonesPage = /** @class */ (function (_super) {
+    __extends(DowJonesPage, _super);
+    function DowJonesPage(navCtrl, navParams, restProvider) {
+        var _this = _super.call(this, navCtrl, navParams, restProvider) || this;
+        _this.navCtrl = navCtrl;
+        _this.navParams = navParams;
+        _this.restProvider = restProvider;
+        _this.getDowJonesDataObjectsFromPromise();
+        return _this;
+    }
+    DowJonesPage.prototype.getDowJonesDataObjectsFromPromise = function () {
+        var _this = this;
+        this.restProvider.getDowJonesDataFromAPIViaPromise().then(function (data) {
+            _this.stockData = data;
+            _this.bindDataToHTML(data);
+        });
+    };
+    DowJonesPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-dow-jones',template:/*ion-inline-start:"C:\Users\admin\stockWatcher-master\stockWatcher\src\pages\stockListPages\dow-jones\dow-jones.html"*/'<!--\n\n  Generated template for the DowJonesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Dow Jones Industrial Average</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="bg-image">\n\n\n\n\n\n  <button ion-button color="dark" round full (click)="goToHomePage()">Home Page</button>\n\n  <div [innerHTML]="htmlStockData"></div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\admin\stockWatcher-master\stockWatcher\src\pages\stockListPages\dow-jones\dow-jones.html"*/,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]) === "function" && _c || Object])
+    ], DowJonesPage);
+    return DowJonesPage;
+    var _a, _b, _c;
+}(__WEBPACK_IMPORTED_MODULE_3__stockListBase__["a" /* default */]));
+
+//# sourceMappingURL=dow-jones.js.map
+
+/***/ }),
+
+/***/ 202:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NysePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stockListBase__ = __webpack_require__(498);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 
@@ -540,46 +596,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var NysePage = /** @class */ (function () {
+var NysePage = /** @class */ (function (_super) {
+    __extends(NysePage, _super);
     function NysePage(navCtrl, navParams, restProvider) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.restProvider = restProvider;
-        this.getNYSEDataObjectsFromPromise();
+        var _this = _super.call(this, navCtrl, navParams, restProvider) || this;
+        _this.navCtrl = navCtrl;
+        _this.navParams = navParams;
+        _this.restProvider = restProvider;
+        _this.getNYSEDataObjectsFromPromise();
+        return _this;
     }
     NysePage.prototype.getNYSEDataObjectsFromPromise = function () {
         var _this = this;
         this.restProvider.getNYSEDataFromAPIViaPromise().then(function (data) {
-            console.log("Trying to access NYSE results from the Promise return");
-            _this.NYSEstockData = data;
-            console.log("Got NYSE results from the Promise");
+            _this.stockData = data;
             _this.bindDataToHTML(data);
         });
-    };
-    NysePage.prototype.bindDataToHTML = function (stockData) {
-        this.htmlStockData += __WEBPACK_IMPORTED_MODULE_4__stockListPageUtilities__["a" /* default */].parseStockData(stockData);
-    };
-    NysePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad NysePage');
-    };
-    NysePage.prototype.goToHomePage = function () {
-        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]); // by using setroot we get rid of the back button when we go back to the home page
     };
     NysePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-nyse',template:/*ion-inline-start:"C:\Users\admin\stockWatcher-master\stockWatcher\src\pages\stockListPages\nyse\nyse.html"*/'<!--\n\n  Generated template for the NysePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>NYSE</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class = "bg-image">\n\n    <button ion-button color="dark" round full (click)="goToHomePage()">Home Page</button>\n\n    <div [innerHTML]="htmlStockData"></div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\admin\stockWatcher-master\stockWatcher\src\pages\stockListPages\nyse\nyse.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_rest_rest__["a" /* RestProvider */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_rest_rest__["a" /* RestProvider */]) === "function" && _c || Object])
     ], NysePage);
     return NysePage;
     var _a, _b, _c;
-}());
+}(__WEBPACK_IMPORTED_MODULE_3__stockListBase__["a" /* default */]));
 
 //# sourceMappingURL=nyse.js.map
 
 /***/ }),
 
-/***/ 235:
+/***/ 236:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -592,36 +640,36 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 235;
+webpackEmptyAsyncContext.id = 236;
 
 /***/ }),
 
-/***/ 278:
+/***/ 279:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/login/login.module": [
-		616,
+		618,
 		5
 	],
 	"../pages/register/register.module": [
-		617,
+		619,
 		4
 	],
 	"../pages/stockListPages/dow-jones/dow-jones.module": [
-		618,
+		620,
 		3
 	],
 	"../pages/stockListPages/nasdaq/nasdaq.module": [
-		621,
+		622,
 		2
 	],
 	"../pages/stockListPages/nyse/nyse.module": [
-		619,
+		621,
 		1
 	],
 	"../pages/stockListPages/sand-p/sand-p.module": [
-		620,
+		623,
 		0
 	]
 };
@@ -636,18 +684,18 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 278;
+webpackAsyncContext.id = 279;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 344:
+/***/ 345:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(465);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(466);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -655,34 +703,34 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 465:
+/***/ 466:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(466);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(467);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2__ = __webpack_require__(602);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2__ = __webpack_require__(604);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_angularfire2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angularfire2_auth__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angularfire2_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_angularfire2_auth__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(603);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(605);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_stockListPages_nasdaq_nasdaq__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_stockListPages_sand_p_sand_p__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_stockListPages_dow_jones_dow_jones__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_stockListPages_nyse_nyse__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_stockListPages_nasdaq_nasdaq__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_stockListPages_sand_p_sand_p__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_stockListPages_dow_jones_dow_jones__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_stockListPages_nyse_nyse__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_rest_rest__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__app_fire_config__ = __webpack_require__(604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_register_register__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_authentication_service__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_angularfire2_database__ = __webpack_require__(605);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__app_fire_config__ = __webpack_require__(606);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_register_register__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_authentication_service__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_angularfire2_database__ = __webpack_require__(607);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_angularfire2_database__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -727,8 +775,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/stockListPages/dow-jones/dow-jones.module#DowJonesPageModule', name: 'DowJonesPage', segment: 'dow-jones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/stockListPages/nyse/nyse.module#NysePageModule', name: 'NysePage', segment: 'nyse', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/stockListPages/sand-p/sand-p.module#SandPPageModule', name: 'SandPPage', segment: 'sand-p', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/stockListPages/nasdaq/nasdaq.module#NasdaqPageModule', name: 'NasdaqPage', segment: 'nasdaq', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/stockListPages/nasdaq/nasdaq.module#NasdaqPageModule', name: 'NasdaqPage', segment: 'nasdaq', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/stockListPages/sand-p/sand-p.module#SandPPageModule', name: 'SandPPage', segment: 'sand-p', priority: 'low', defaultHistory: [] }
                     ]
                 }), __WEBPACK_IMPORTED_MODULE_7_angularfire2__["AngularFireModule"].initializeApp(__WEBPACK_IMPORTED_MODULE_16__app_fire_config__["a" /* FIREBASE_CONFIG */])
             ],
@@ -753,17 +801,48 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 603:
+/***/ 498:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_home__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stockListPageUtilities__ = __webpack_require__(101);
+
+
+var stockListPage = /** @class */ (function () {
+    function stockListPage(navCtrl, navParams, restProvider) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.restProvider = restProvider;
+        this.htmlStockData = "";
+    }
+    stockListPage.prototype.bindDataToHTML = function (stockData) {
+        this.htmlStockData += __WEBPACK_IMPORTED_MODULE_1__stockListPageUtilities__["a" /* default */].parseStockData(stockData);
+    };
+    stockListPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad DowJonesPage');
+    };
+    stockListPage.prototype.goToHomePage = function () {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_0__home_home__["a" /* HomePage */]);
+    };
+    return stockListPage;
+}());
+/* harmony default export */ __webpack_exports__["a"] = (stockListPage);
+//# sourceMappingURL=stockListBase.js.map
+
+/***/ }),
+
+/***/ 605:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_authentication_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_authentication_service__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -803,7 +882,7 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 604:
+/***/ 606:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -827,14 +906,14 @@ var FIREBASE_CONFIG = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stockListPages_nasdaq_nasdaq__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stockListPages_sand_p_sand_p__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stockListPages_dow_jones_dow_jones__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stockListPages_nyse_nyse__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stockListPages_nasdaq_nasdaq__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stockListPages_sand_p_sand_p__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stockListPages_dow_jones_dow_jones__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stockListPages_nyse_nyse__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__register_register__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_authentication_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__register_register__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_authentication_service__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -903,60 +982,12 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 622:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var stockListPageUtilities = /** @class */ (function () {
-    function stockListPageUtilities() {
-    }
-    stockListPageUtilities.parseStockData = function (allStockData) {
-        var numberOfStockSources = Object.keys(allStockData).length;
-        var htmlString = "";
-        for (var i = 0; i < numberOfStockSources; i++) {
-            htmlString += this.generateHtmlStockSection(allStockData, i);
-        }
-        return htmlString;
-    };
-    stockListPageUtilities.generateHtmlStockSection = function (allStockData, i) {
-        var stocks = this.getStocks(allStockData, i);
-        var companyName = this.grabCompanyStockValue(stocks, "companyName");
-        var latestPrice = this.grabCompanyStockValue(stocks, "latestPrice");
-        var change = this.grabCompanyStockValue(stocks, "change");
-        var previousClose = this.grabCompanyStockValue(stocks, "previousClose");
-        var volumeTraded = this.grabCompanyStockValue(stocks, "volume");
-        return "<h6><strong>" + companyName + "</strong></h6>" +
-            "<p>Latest Price: " + latestPrice + "</p>" +
-            "<p>Change: " + change + "</p>" +
-            "<p>Previous Close: " + previousClose + "</p>" +
-            "<p>Volume Traded: " + volumeTraded + "</p>";
-    };
-    stockListPageUtilities.getStocks = function (stockData, index) {
-        var arrayedQuoteObjects = Object.values(stockData);
-        var companyQuoteValues = this.grabCompanyQuoteObject(arrayedQuoteObjects, index);
-        return [Object.keys(companyQuoteValues), Object.values(companyQuoteValues)];
-    };
-    stockListPageUtilities.grabCompanyQuoteObject = function (arrayedQuoteObjects, companyInt) {
-        return arrayedQuoteObjects[companyInt]["quote"];
-    };
-    stockListPageUtilities.grabCompanyStockValue = function (stocks, param) {
-        var stockIndex = stocks[0].indexOf(param);
-        var stockValue = stocks[1][stockIndex];
-        return stockValue == null ? "" : stockValue;
-    };
-    return stockListPageUtilities;
-}());
-/* harmony default export */ __webpack_exports__["a"] = (stockListPageUtilities);
-//# sourceMappingURL=stockListPageUtilities.js.map
-
-/***/ }),
-
 /***/ 80:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RestProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1058,5 +1089,5 @@ var RestProvider = /** @class */ (function () {
 
 /***/ })
 
-},[344]);
+},[345]);
 //# sourceMappingURL=main.js.map

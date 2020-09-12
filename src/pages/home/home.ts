@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { NasdaqPage } from '../stockListPages/nasdaq/nasdaq';
 import { SandPPage} from '../stockListPages/sand-p/sand-p';
 import { DowJonesPage} from '../stockListPages/dow-jones/dow-jones';
 import { NysePage} from '../stockListPages/nyse/nyse';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { RegisterPage } from '../register/register';
-import { LoginPage } from '../login/login';
 import { AuthenticationService } from'../../services/authentication.service';
 
 
