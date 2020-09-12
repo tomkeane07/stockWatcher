@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../../home/home';
-import { RestProvider} from '../../../providers/rest/rest';
-import stockListPageUtilities from '../stockListPageUtilities';
+import { RestProvider } from '../../../providers/rest/rest';
+import stockListBase from '../stockListBase'
 
 
 @IonicPage()
@@ -10,37 +9,17 @@ import stockListPageUtilities from '../stockListPageUtilities';
   selector: 'page-dow-jones',
   templateUrl: 'dow-jones.html',
 })
-export class DowJonesPage {
-
-  stockDataDowJones: any;
-  htmlStockData: String;
+export class DowJonesPage extends stockListBase{
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
-    this.getDowJonesDataObjectsFromPromise();
+    super( navCtrl, navParams, restProvider);
+    this.getDowJonesDataObjectsFromPromise()
   }
 
-  getDowJonesDataObjectsFromPromise(){
+  getDowJonesDataObjectsFromPromise() {
     this.restProvider.getDowJonesDataFromAPIViaPromise().then(data => {
-      console.log("Trying to access DowJones results from the Promise return");
-
-      this.stockDataDowJones = data;
-
-      console.log("Got DowJones results from the Promise");
+      this.stockData = data;
       this.bindDataToHTML(data)
-    })
+    });
   }
-
-  bindDataToHTML(stockData: Object) {
-    this.htmlStockData += stockListPageUtilities.parseStockData(stockData)
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DowJonesPage');
-  }
-
-  public goToHomePage(){
-
-    this.navCtrl.setRoot(HomePage);    // by using set root we get rid of the back button when we go back to the home page
-  }
-
 }
