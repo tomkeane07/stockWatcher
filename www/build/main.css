@@ -43366,17 +43366,6 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
-page-dow-jones .bg-image {
-  /* The image used */
-  background-image: url("../assets/imgs/gradientbeige.jpg");
-  /* Full height */
-  height: 100%;
-  /* Center and scale the image nicely */
-  background-position: center-top;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 page-home .h1 {
   margin: 20px;
   font-family: ' Open Sans';
@@ -43424,28 +43413,6 @@ page-login .navbar {
   background-image: url("../assets/imgs/navbanner.jpg");
 }
 
-page-nasdaq .nasdaq-page {
-  /* The image used */
-  background-image: url("../assets/imgs/gradientbeige.jpg");
-  /* Full height */
-  height: 100%;
-  /* Center and scale the image nicely */
-  background-position: center-top;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-page-nyse .bg-image {
-  /* The image used */
-  background-image: url("../assets/imgs/gradientbeige.jpg");
-  /* Full height */
-  height: 100%;
-  /* Center and scale the image nicely */
-  background-position: center-top;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 page-register .bg-image {
   /* The image used */
   background-image: url("../assets/imgs/register.jpg");
@@ -43467,6 +43434,39 @@ page-register .button-style {
 
 page-register .text {
   color: white;
+}
+
+page-dow-jones .bg-image {
+  /* The image used */
+  background-image: url("../assets/imgs/gradientbeige.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center-top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+page-nasdaq .nasdaq-page {
+  /* The image used */
+  background-image: url("../assets/imgs/gradientbeige.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center-top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+page-nyse .bg-image {
+  /* The image used */
+  background-image: url("../assets/imgs/gradientbeige.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center-top;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .bg-image {

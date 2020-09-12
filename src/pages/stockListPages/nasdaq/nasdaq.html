@@ -1,0 +1,14 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>NASDAQ</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="nasdaq-page">
+
+  <button ion-button color="dark" round full (click)="goToHomePage()">Home Page</button>
+  <div [innerHTML]="htmlStockData"></div>
+</ion-content>
